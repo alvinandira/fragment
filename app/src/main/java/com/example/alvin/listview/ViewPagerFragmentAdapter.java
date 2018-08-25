@@ -1,6 +1,7 @@
 package com.example.alvin.listview;
 
 
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.annotation.NonNull;
@@ -16,9 +17,11 @@ import java.util.List;
 
 class ViewPagerFragmentAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragments;
-    public ViewPagerFragmentAdapter(FragmentManager fm, List<Fragment> fragmentList){
+    private List<String> titleList;
+    public ViewPagerFragmentAdapter(FragmentManager fm, List<Fragment> fragmentList, List<String> titleList){
         super(fm);
         this.fragments = fragmentList;
+        this.titleList = titleList;
     }
 
     @Override
@@ -29,5 +32,11 @@ class ViewPagerFragmentAdapter extends FragmentPagerAdapter {
     @Override
     public int getCount() {
         return fragments.size();
+    }
+
+    @Nullable
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return titleList.get(position);
     }
 }
